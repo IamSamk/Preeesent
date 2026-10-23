@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preeesent"
+        android:textColor="@color/text"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="12dp"
+        android:text="Enter the address and PIN shown on your laptop"
+        android:textColor="@color/muted"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@drawable/field"
+            android:hint="192.168.1.20:8765"
+            android:inputType="textUri"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            android:textColorHint="@color/muted" />
+
+        <EditText
+            android:id="@+id/pin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/field"
+            android:hint="PIN"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            android:textColorHint="@color/muted" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/swap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Swap volume buttons"
+            android:textColor="@color/muted" />
+
+        <Button
+            android:id="@+id/connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="Connect"
+            android:textAllCaps="false"
+            android:textColor="@color/text" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/prev"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/btn"
+        android:text="◀  Back"
+        android:textAllCaps="false"
+        android:textColor="@color/text"
+        android:textSize="28sp" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="2"
+        android:background="@drawable/btn_accent"
+        android:text="Next  ▶"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn"
+            android:text="Start"
+            android:textAllCaps="false"
+            android:textColor="@color/text" />
+
+        <Button
+            android:id="@+id/black"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn"
+            android:text="Black"
+            android:textAllCaps="false"
+            android:textColor="@color/text" />
+
+        <Button
+            android:id="@+id/end"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn"
+            android:text="End"
+            android:textAllCaps="false"
+            android:textColor="@color/text" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Volume Up = Next  ·  Volume Down = Back"
+        android:textColor="@color/muted"
+        android:textSize="12sp" />
+</LinearLayout>
