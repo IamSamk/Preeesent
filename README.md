@@ -12,7 +12,7 @@ uses the arrow keys.
 
 ## 1. Laptop
 
-Needs Python 3.8+.
+Needs Python 3.8+. It shows the address, PIN and a QR code to scan.
 
 - **Windows:** double-click `laptop/start.bat`
 - **Mac / Linux:** run `./laptop/start.sh`
@@ -35,7 +35,8 @@ If Windows Firewall asks, click **Allow** (private networks).
 1. On your phone, open the repo's **Releases → latest** and download `Preeesent.apk`
    (it's built automatically by GitHub Actions on every push).
 2. Open it and allow "install unknown apps" when asked.
-3. Type the **Address** and **PIN** from the laptop, tap **Connect**.
+3. Tap **Scan QR on laptop** and point it at the QR code in the laptop window.
+   It fills in the address and PIN and connects. (You can also type them and tap **Connect**.)
 4. Open your slides, start the slideshow, and press the volume buttons.
 
 Keep the app open on screen while presenting (it keeps the screen awake for you).
@@ -44,7 +45,7 @@ Tick **Swap volume buttons** if you want them the other way round.
 ### Any phone (iPhone too) — browser
 
 Open the address shown on the laptop (e.g. `http://192.168.1.20:8765`) in your phone
-browser, or scan the QR code, enter the PIN, and use the big on-screen buttons.
+browser, or scan the QR code with your camera (the PIN is filled in for you), and use the big on-screen buttons.
 Browsers don't let web pages read the volume buttons, so for those use the Android app.
 
 ## Buttons

@@ -139,7 +139,8 @@ def main():
     print(f"  Address : {ip}:{args.port}")
     print(f"  PIN     : {Handler.pin}")
     print(f"  Browser : {url}\n")
-    print_qr(url)
+    print("  Scan this with the Preeesent app (or your phone camera):\n")
+    print_qr(f"{url}/#pin={Handler.pin}")
     if _keyboard is None:
         print(f"  WARNING: can't press keys ({_keyboard_error}). Running in dry-run mode.")
         print("  Install with: pip install -r requirements.txt\n")

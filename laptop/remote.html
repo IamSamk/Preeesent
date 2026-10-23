@@ -50,6 +50,8 @@
   const pinEl = document.getElementById('pin');
   let pin = '';
   try { pin = localStorage.getItem('pin') || ''; } catch (e) {}
+  const m = location.hash.match(/pin=(\d+)/);  // PIN from the laptop's QR code
+  if (m) { pin = m[1]; history.replaceState(null, '', location.pathname); }
   pinEl.value = pin;
 
   function setStatus(text, cls) { statusEl.textContent = text; statusEl.className = 'status ' + (cls || ''); }

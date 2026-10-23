@@ -19,9 +19,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="12dp"
-        android:text="Enter the address and PIN shown on your laptop"
+        android:text="Scan the QR code on your laptop, or type the address and PIN"
         android:textColor="@color/muted"
         android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/scan"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_accent"
+        android:text="Scan QR on laptop"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

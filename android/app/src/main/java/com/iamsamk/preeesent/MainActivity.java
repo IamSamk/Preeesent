@@ -2,7 +2,9 @@ package com.iamsamk.preeesent;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.KeyEvent;
@@ -11,6 +13,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -53,6 +58,7 @@ public class MainActivity extends Activity {
         swapBox.setOnCheckedChangeListener((b, checked) ->
                 prefs.edit().putBoolean("swap", checked).apply());
 
+        findViewById(R.id.scan).setOnClickListener(v -> scan());
         findViewById(R.id.connect).setOnClickListener(v -> connect());
         findViewById(R.id.next).setOnClickListener(v -> send("next"));
         findViewById(R.id.prev).setOnClickListener(v -> send("prev"));
@@ -61,6 +67,38 @@ public class MainActivity extends Activity {
         findViewById(R.id.end).setOnClickListener(v -> send("end"));
 
         if (!addressField.getText().toString().isEmpty()) connect();
+    }
+
+    // ----- QR scan -----
+
+    private void scan() {
+        new IntentIntegrator(this)
+                .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+                .setPrompt("Point at the QR code on your laptop")
+                .setOrientationLocked(false)
+                .setBeepEnabled(false)
+                .initiateScan();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result == null) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+        if (result.getContents() == null) return; // cancelled
+        // QR looks like: http://192.168.1.20:8765/#pin=4821
+        Uri uri = Uri.parse(result.getContents().trim());
+        if (uri.getHost() == null || !"http".equals(uri.getScheme())) {
+            setStatus("That QR code isn't from Preeesent");
+            return;
+        }
+        int port = uri.getPort() == -1 ? 8765 : uri.getPort();
+        addressField.setText(uri.getHost() + ":" + port);
+        String frag = uri.getFragment();
+        if (frag != null && frag.startsWith("pin=")) pinField.setText(frag.substring(4));
+        connect();
     }
 
     // ----- Volume buttons -----
