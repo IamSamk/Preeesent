@@ -5,163 +5,307 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Preeesent"
-        android:textColor="@color/text"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Preeesent"
+            android:textColor="@color/text"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/setupToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/btn"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Setup"
+            android:textAllCaps="false"
+            android:textColor="@color/text" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="10dp"
         android:text="Scan the QR code on your laptop, or type the address and PIN"
         android:textColor="@color/muted"
         android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/scan"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/btn_accent"
-        android:text="Scan QR on laptop"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="17sp" />
-
+    <!-- Mode switch -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/address"
+        <Button
+            android:id="@+id/modeSlides"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:background="@drawable/field"
-            android:hint="192.168.1.20:8765"
-            android:inputType="textUri"
-            android:singleLine="true"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_accent"
+            android:text="Slides"
+            android:textAllCaps="false"
             android:textColor="@color/text"
-            android:textColorHint="@color/muted" />
+            android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/pin"
+        <Button
+            android:id="@+id/modeMedia"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:background="@drawable/field"
-            android:hint="PIN"
-            android:inputType="numberPassword"
-            android:maxLength="4"
-            android:singleLine="true"
+            android:background="@drawable/btn"
+            android:text="Media"
+            android:textAllCaps="false"
             android:textColor="@color/text"
-            android:textColorHint="@color/muted" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/swap"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Swap volume buttons"
-            android:textColor="@color/muted" />
+            android:textSize="16sp" />
 
         <Button
-            android:id="@+id/connect"
+            android:id="@+id/switchApp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
             android:background="@drawable/btn"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="Connect"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:text="⇄ App"
             android:textAllCaps="false"
-            android:textColor="@color/text" />
+            android:textColor="@color/text"
+            android:textSize="16sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/prev"
+    <!-- Setup (connection + volume button mapping) -->
+    <ScrollView
+        android:id="@+id/setupPanel"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_weight="1"
-        android:background="@drawable/btn"
-        android:text="◀  Back"
-        android:textAllCaps="false"
-        android:textColor="@color/text"
-        android:textSize="28sp" />
+        android:visibility="gone">
 
-    <Button
-        android:id="@+id/next"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/scan"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/btn_accent"
+                android:text="Scan QR on laptop"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/field"
+                    android:hint="192.168.1.20:8765"
+                    android:inputType="textUri"
+                    android:singleLine="true"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/muted" />
+
+                <EditText
+                    android:id="@+id/pin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/field"
+                    android:hint="PIN"
+                    android:inputType="numberPassword"
+                    android:maxLength="4"
+                    android:singleLine="true"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/muted" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/connect"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn"
+                android:text="Connect"
+                android:textAllCaps="false"
+                android:textColor="@color/text" />
+
+            <CheckBox
+                android:id="@+id/altTabOnMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Changing mode also switches the laptop app (Alt+Tab)"
+                android:textColor="@color/muted" />
+
+            <TextView
+                android:id="@+id/mapTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Volume buttons in Slides mode"
+                android:textColor="@color/text"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Double press = press twice quickly"
+                android:textColor="@color/muted"
+                android:textSize="12sp" />
+
+            <LinearLayout style="@style/MapRow">
+                <TextView style="@style/MapLabel" android:text="Volume Up" />
+                <Spinner android:id="@+id/mapUp" style="@style/MapSpinner" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/MapRow">
+                <TextView style="@style/MapLabel" android:text="Volume Down" />
+                <Spinner android:id="@+id/mapDown" style="@style/MapSpinner" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/MapRow">
+                <TextView style="@style/MapLabel" android:text="Double Up" />
+                <Spinner android:id="@+id/mapUp2" style="@style/MapSpinner" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/MapRow">
+                <TextView style="@style/MapLabel" android:text="Double Down" />
+                <Spinner android:id="@+id/mapDown2" style="@style/MapSpinner" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/resetMap"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Reset to defaults"
+                android:textAllCaps="false"
+                android:textColor="@color/muted" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Slides remote -->
+    <LinearLayout
+        android:id="@+id/slidesPanel"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:layout_weight="2"
-        android:background="@drawable/btn_accent"
-        android:text="Next  ▶"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="32sp" />
+        android:layout_weight="1"
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/prev"
+            style="@style/BigButton"
+            android:layout_weight="1"
+            android:text="◀  Back" />
+
+        <Button
+            android:id="@+id/next"
+            style="@style/BigButton"
+            android:layout_weight="2"
+            android:background="@drawable/btn_accent"
+            android:text="Next  ▶"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/start" style="@style/SmallButton" android:text="Start" />
+            <Button android:id="@+id/black" style="@style/SmallButton" android:layout_marginStart="10dp" android:text="Black" />
+            <Button android:id="@+id/end" style="@style/SmallButton" android:layout_marginStart="10dp" android:text="End" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Media remote -->
     <LinearLayout
+        android:id="@+id/mediaPanel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/volDown" style="@style/SmallButton" android:textSize="24sp" android:text="Vol −" />
+            <Button android:id="@+id/volUp" style="@style/SmallButton" android:layout_marginStart="10dp" android:textSize="24sp" android:text="Vol +" />
+        </LinearLayout>
 
         <Button
-            android:id="@+id/start"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn"
-            android:text="Start"
-            android:textAllCaps="false"
-            android:textColor="@color/text" />
+            android:id="@+id/playPause"
+            style="@style/BigButton"
+            android:layout_weight="2"
+            android:background="@drawable/btn_accent"
+            android:text="Play / Pause"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp" />
 
-        <Button
-            android:id="@+id/black"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn"
-            android:text="Black"
-            android:textAllCaps="false"
-            android:textColor="@color/text" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/end"
-            android:layout_width="0dp"
+            <Button android:id="@+id/seekBack" style="@style/SmallButton" android:textSize="18sp" android:text="◀◀ Rewind" />
+            <Button android:id="@+id/seekFwd" style="@style/SmallButton" android:layout_marginStart="10dp" android:textSize="18sp" android:text="Forward ▶▶" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn"
-            android:text="End"
-            android:textAllCaps="false"
-            android:textColor="@color/text" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/prevTrack" style="@style/SmallButton" android:text="|◀ Prev" />
+            <Button android:id="@+id/mute" style="@style/SmallButton" android:layout_marginStart="8dp" android:text="Mute" />
+            <Button android:id="@+id/fullscreen" style="@style/SmallButton" android:layout_marginStart="8dp" android:text="Full" />
+            <Button android:id="@+id/nextTrack" style="@style/SmallButton" android:layout_marginStart="8dp" android:text="Next ▶|" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
+        android:id="@+id/hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Volume Up = Next  ·  Volume Down = Back"
         android:textColor="@color/muted"
         android:textSize="12sp" />
 </LinearLayout>

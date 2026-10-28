@@ -40,7 +40,25 @@ If Windows Firewall asks, click **Allow** (private networks).
 4. Open your slides, start the slideshow, and press the volume buttons.
 
 Keep the app open on screen while presenting (it keeps the screen awake for you).
-Tick **Swap volume buttons** if you want them the other way round.
+
+### Slides and Media modes
+
+Switch with the **Slides / Media** tabs at the top, or **double-press Volume Down**.
+
+| Volume button | Slides mode | Media mode (videos, music) |
+| --- | --- | --- |
+| Up | Next slide | Laptop volume + (hold to keep raising) |
+| Down | Previous slide | Laptop volume − |
+| Double Up | Black screen | Play / Pause |
+| Double Down | Switch to Media | Switch to Slides |
+
+Change any of these under **Setup → Volume buttons**. Options include mute, rewind/forward,
+next/previous track, fullscreen and "Switch laptop app" (Alt+Tab, or Cmd+Tab on Mac).
+Tick **"Changing mode also switches the laptop app"** to jump from your slides to the video
+window automatically.
+
+Media mode uses the laptop's media keys, so play/pause works with YouTube, VLC, Spotify,
+Netflix and most players.
 
 ### Any phone (iPhone too) — browser
 
@@ -52,11 +70,14 @@ Browsers don't let web pages read the volume buttons, so for those use the Andro
 
 | Button | Key pressed |
 | --- | --- |
-| Next / Volume Up | → |
-| Back / Volume Down | ← |
+| Next / Back | → / ← |
 | Start | F5 |
 | Black | B (black screen) |
 | End | Esc |
+| Play / Pause, Vol +/−, Mute, Prev/Next track | Media keys |
+| Rewind / Forward | ← / → |
+| Full | F |
+| ⇄ App | Alt+Tab (Cmd+Tab on Mac) |
 
 ## Troubleshooting
 

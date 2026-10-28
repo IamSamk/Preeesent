@@ -28,7 +28,9 @@ except Exception as exc:  # no display, missing package, etc.
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 # Action name -> key(s) pressed on the laptop.
+_APP_SWITCH = "cmd+tab" if sys.platform == "darwin" else "alt+tab"
 ACTIONS = {
+    # Slides
     "next": "right",
     "prev": "left",
     "start": "f5",         # start slideshow (PowerPoint / Google Slides)
@@ -38,6 +40,18 @@ ACTIONS = {
     "white": "w",          # white screen toggle
     "first": "home",
     "last": "end",
+    # Media (YouTube, VLC, Spotify, Netflix, Windows/Mac players...)
+    "play_pause": "media_play_pause",
+    "vol_up": "media_volume_up",
+    "vol_down": "media_volume_down",
+    "mute": "media_volume_mute",
+    "next_track": "media_next",
+    "prev_track": "media_previous",
+    "seek_fwd": "right",
+    "seek_back": "left",
+    "fullscreen": "f",
+    # Any mode
+    "switch_app": _APP_SWITCH,
 }
 
 

@@ -15,7 +15,7 @@
   .status { font-size:13px; color:var(--muted); }
   .status.ok { color:#3dd68c; } .status.err { color:var(--danger); }
   #pinBox { display:flex; gap:8px; }
-  input { flex:1; font-size:20px; padding:12px; border-radius:12px; border:1px solid #333;
+  input { flex:1; min-width:0; font-size:20px; padding:12px; border-radius:12px; border:1px solid #333;
     background:var(--card); color:var(--text); letter-spacing:6px; text-align:center; }
   button { border:0; border-radius:16px; background:var(--card); color:var(--text);
     font-size:18px; font-weight:600; padding:14px; touch-action:manipulation; }
@@ -26,6 +26,16 @@
   .row { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
   .row button { font-size:15px; padding:12px 6px; }
   .hint { font-size:12px; color:var(--muted); text-align:center; }
+  .tabs { display:grid; grid-template-columns:1fr 1fr auto; gap:8px; }
+  .tabs button { font-size:16px; padding:12px 14px; }
+  .tabs button.on { background:var(--accent); }
+  .panel { flex:1; display:flex; flex-direction:column; gap:12px; }
+  .panel[hidden] { display:none; }
+  .pair { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .pair button { font-size:22px; }
+  #play { background:var(--accent); flex:2; font-size:28px; }
+  .row4 { display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; }
+  .row4 button { font-size:14px; padding:12px 4px; }
 </style>
 </head>
 <body>
@@ -35,14 +45,38 @@
     <input id="pin" inputmode="numeric" maxlength="4" placeholder="PIN">
     <button id="connect">Connect</button>
   </div>
-  <div class="big">
-    <button id="prev">&#9664; Back</button>
-    <button id="next">Next &#9654;</button>
+  <div class="tabs">
+    <button id="tabSlides" class="on">Slides</button>
+    <button id="tabMedia">Media</button>
+    <button data-a="switch_app">&#8644; App</button>
   </div>
-  <div class="row">
-    <button data-a="start">Start</button>
-    <button data-a="black">Black</button>
-    <button data-a="end">End</button>
+  <div id="slides" class="panel">
+    <div class="big">
+      <button id="prev">&#9664; Back</button>
+      <button id="next">Next &#9654;</button>
+    </div>
+    <div class="row">
+      <button data-a="start">Start</button>
+      <button data-a="black">Black</button>
+      <button data-a="end">End</button>
+    </div>
+  </div>
+  <div id="media" class="panel" hidden>
+    <div class="pair">
+      <button data-a="vol_down">Vol &minus;</button>
+      <button data-a="vol_up">Vol +</button>
+    </div>
+    <button id="play" data-a="play_pause">Play / Pause</button>
+    <div class="row" style="grid-template-columns:1fr 1fr">
+      <button data-a="seek_back">&#9664;&#9664; Rewind</button>
+      <button data-a="seek_fwd">Forward &#9654;&#9654;</button>
+    </div>
+    <div class="row4">
+      <button data-a="prev_track">|&#9664; Prev</button>
+      <button data-a="mute">Mute</button>
+      <button data-a="fullscreen">Full</button>
+      <button data-a="next_track">Next &#9654;|</button>
+    </div>
   </div>
   <div class="hint">For volume-button control, use the Preeesent Android app.</div>
 <script>
@@ -91,6 +125,16 @@
     if (['ArrowRight', 'PageDown', ' ', 'AudioVolumeUp'].includes(e.key)) { e.preventDefault(); send('next'); }
     if (['ArrowLeft', 'PageUp', 'AudioVolumeDown'].includes(e.key)) { e.preventDefault(); send('prev'); }
   });
+  function setMode(media) {
+    document.getElementById('slides').hidden = media;
+    document.getElementById('media').hidden = !media;
+    document.getElementById('tabSlides').classList.toggle('on', !media);
+    document.getElementById('tabMedia').classList.toggle('on', media);
+    try { localStorage.setItem('mode', media ? 'media' : 'slides'); } catch (e) {}
+  }
+  document.getElementById('tabSlides').onclick = () => setMode(false);
+  document.getElementById('tabMedia').onclick = () => setMode(true);
+  try { setMode(localStorage.getItem('mode') === 'media'); } catch (e) {}
   if (pin) connect();
 </script>
 </body>
